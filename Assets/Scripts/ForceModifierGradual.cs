@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceModifier : MonoBehaviour
+public class ForceModifierGradual : MonoBehaviour
 {
     [SerializeField] private Vector2 force;
 
     private void ApplyForceModifier(Rigidbody2D rigidBody)
     {
-        rigidBody.AddForce(force, ForceMode2D.Impulse);
+        rigidBody.AddForce(force * Time.deltaTime, ForceMode2D.Impulse);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player") == false)
             return;

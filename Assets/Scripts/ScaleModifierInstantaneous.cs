@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScaleModifier : MonoBehaviour
+public class ScaleModifierInstantaneous : MonoBehaviour
 {
     [SerializeField] private float multiplier;
 
