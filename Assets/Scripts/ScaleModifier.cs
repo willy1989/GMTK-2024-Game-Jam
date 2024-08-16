@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ScaleModifier : MonoBehaviour
 {
-    private void ChangeScale(Rigidbody2D rigidBody)
+    [SerializeField] private float multiplier;
+
+    private void ApplyScaleModifier(Rigidbody2D rigidBody)
     {
-        rigidBody.mass *= 2f;
+        rigidBody.mass *= multiplier;
 
         Vector3 currentScale = rigidBody.transform.localScale;
 
-        Vector3 newScale = new Vector3(currentScale.x * 2f, currentScale.y * 2f, currentScale.z * 2f);
+        Vector3 newScale = new Vector3(currentScale.x * multiplier, currentScale.y * multiplier, currentScale.z * multiplier);
 
         rigidBody.transform.localScale = newScale;
     }
@@ -23,6 +25,6 @@ public class ScaleModifier : MonoBehaviour
         Rigidbody2D rigidBody = collider.GetComponent<Rigidbody2D>();
 
         if (rigidBody != null)
-            ChangeScale(rigidBody);
+            ApplyScaleModifier(rigidBody);
     }
 }
