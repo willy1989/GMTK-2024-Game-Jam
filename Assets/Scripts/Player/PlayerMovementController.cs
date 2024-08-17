@@ -8,8 +8,6 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private float forceAmount;
 
-    [SerializeField] private int uses = 0;
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
@@ -35,11 +33,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void AddForce(Vector2 force)
     {
-        if (uses == 0)
-            return;
-
         rigidBody.AddForce(force * forceAmount, ForceMode2D.Impulse) ;
-        uses--;
     }
 
     
