@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class GameloopManager : MonoBehaviour
 {
-    [SerializeField] Button restartLevelButton;
+    [SerializeField] Button restartLevelButtonInGame;
+
+    [SerializeField] Button restartLevelButtonGameOverMenu;
 
     private void Awake()
     {
-        restartLevelButton.onClick.AddListener(RestartLevel);
+        restartLevelButtonInGame.onClick.AddListener(RestartLevel);
+        restartLevelButtonGameOverMenu.onClick.AddListener(RestartLevel);
     }
 
     private void RestartLevel()
