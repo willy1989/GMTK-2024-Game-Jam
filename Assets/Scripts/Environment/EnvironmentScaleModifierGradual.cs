@@ -10,6 +10,6 @@ public class EnvironmentScaleModifierGradual : EnvironmentScaleModifierBase
         if (!collider.ComparePlayerTag())
             return;
 
-        ModifyScaleAndMass();
+        Modify();
     }
 }

@@ -8,6 +8,6 @@ public class EnvironmentScaleModifierInstantaneous : EnvironmentScaleModifierBas
         if (!collider.ComparePlayerTag())
             return;
 
-        ModifyScaleAndMass();
+        Modify();
     }
 }
