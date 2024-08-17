@@ -12,18 +12,11 @@ public record Axes
     public bool YOnlyUp;
 }
 
-public abstract class EnvironmentScaleModifierBase : MonoBehaviour
+public abstract class EnvironmentScaleModifierBase : EnvironmentModifierBase
 {
-    [SerializeField] private float scaleFactor = 0.1f;
-    [SerializeField] private float maxScale = 3f;
-    [SerializeField] private float minScale = 0.5f;
-    [SerializeField] private Axes axes;
-    [SerializeField] private bool isIncreasing = true;
-    [SerializeField] private Rigidbody2D targetRb;
+    protected virtual float ScaleFactor => factor;
 
-    protected virtual float ScaleFactor => scaleFactor;
-
-    protected virtual void ModifyScaleAndMass()
+    public override void Modify()
     {
         var scale = targetRb.transform.localScale;
         var newScale = scale;
@@ -31,7 +24,7 @@ public abstract class EnvironmentScaleModifierBase : MonoBehaviour
 
         if (axes.X)
         {
-            newScale.x = Mathf.Clamp(scale.x + factor, minScale, maxScale);
+            newScale.x = Mathf.Clamp(scale.x + factor, minValue, maxValue);
         }
 
         if (axes.Y)
@@ -40,12 +33,12 @@ public abstract class EnvironmentScaleModifierBase : MonoBehaviour
             if (axes.YOnlyUp && isIncreasing)
             {
                 var yOffset = factor / 2f;
-                newScale.y = Mathf.Clamp(scale.y + factor, minScale, maxScale);
+                newScale.y = Mathf.Clamp(scale.y + factor, minValue, maxValue);
                 targetRb.transform.position += new Vector3(0, yOffset, 0);
             }
             else
             {
-                newScale.y = Mathf.Clamp(scale.y + factor, minScale, maxScale);
+                newScale.y = Mathf.Clamp(scale.y + factor, minValue, maxValue);
             }
         }
 
@@ -54,27 +47,5 @@ public abstract class EnvironmentScaleModifierBase : MonoBehaviour
         // Assuming uniform scaling, calculate the mass based on x scale ratio
         var scaleRatio = newScale.x / scale.x;
         targetRb.mass *= scaleRatio;
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (!collider.ComparePlayerTag())
-        {
-            return;
-        }
-
-        Debug.Log($"[env] {name} Trigger entered");
-        ModifyScaleAndMass();
-    }
-
-    protected virtual void OnTriggerStay2D(Collider2D collider)
-    {
-        if (!collider.ComparePlayerTag())
-        {
-            return;
-        }
-
-        Debug.Log($"[env] {name} Trigger stay");
-        ModifyScaleAndMass();
     }
 }
