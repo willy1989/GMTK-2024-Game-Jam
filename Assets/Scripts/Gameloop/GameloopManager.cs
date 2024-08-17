@@ -6,14 +6,20 @@ using UnityEngine.UI;
 
 public class GameloopManager : MonoBehaviour
 {
-    [SerializeField] Button restartLevelButtonInGame;
+    [SerializeField] private Button restartLevelButtonInGame;
 
-    [SerializeField] Button restartLevelButtonGameOverMenu;
+    [SerializeField] private Button restartLevelButtonGameOverMenu;
+
+    [SerializeField] private Button loadNextLevelButton;
+
+    [SerializeField] string nextLevelName;
 
     private void Awake()
     {
         restartLevelButtonInGame.onClick.AddListener(RestartLevel);
         restartLevelButtonGameOverMenu.onClick.AddListener(RestartLevel);
+        loadNextLevelButton.onClick.AddListener(LoadNextLevel);
+
     }
 
     private void RestartLevel()
@@ -23,5 +29,21 @@ public class GameloopManager : MonoBehaviour
 
         // Reload the current scene
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadNextLevel()
+    {
+        if (!string.IsNullOrEmpty(nextLevelName))
+        {
+            // Unload the current active scene
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+
+            // Load the new scene
+            SceneManager.LoadSceneAsync(nextLevelName);
+        }
+        else
+        {
+            Debug.LogError("Next level scene name is empty or null!");
+        }
     }
 }
