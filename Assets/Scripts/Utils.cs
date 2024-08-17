@@ -4,6 +4,11 @@ public static class Utils
 {
     public static bool ComparePlayerTag(this Collider2D collider)
     {
-        return collider.CompareTag("Player");
+        return collider.gameObject.ComparePlayerTag();
+    }
+
+    public static bool ComparePlayerTag(this GameObject gameObject)
+    {
+        return gameObject.CompareTag("Player");
     }
 }

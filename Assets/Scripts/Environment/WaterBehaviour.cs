@@ -20,9 +20,7 @@ public class WaterBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (!collider.ComparePlayerTag())
-        {
             return;
-        }
 
         playerRb = collider.attachedRigidbody;
         isInWater = true;
