@@ -3,34 +3,34 @@ using UnityEngine.Events;
 
 public abstract class PlayerControllerBase : MonoBehaviour
 {
-    public event UnityAction OnActionMade;
+    public abstract event UnityAction OnActionMade;
     protected bool isFrozen;
 
     private void Awake()
     {
-        // Freeze in tutorial screen 
-        var tm = FindObjectOfType<TutorialManager>();
-        tm.OnTutorialOpened += OnTutorialOpened;
-        tm.OnTutorialClosed += OnTutorialClosed;
+        // Freeze when UI is open  
+        var uim = FindObjectOfType<UIManager>();
+        uim.OnOpened += OnUIOpened;
+        uim.OnClosed += OnUIClosed;
     }
 
-    private void OnTutorialOpened()
+    private void OnUIOpened()
     {
         isFrozen = true;
     }
 
-    private void OnTutorialClosed()
+    private void OnUIClosed()
     {
         isFrozen = false;
     }
 
     private void OnDestroy()
     {
-        var tm = FindObjectOfType<TutorialManager>();
-        if (tm != null)
+        var uim = FindObjectOfType<UIManager>();
+        if (uim != null)
         {
-            tm.OnTutorialOpened -= OnTutorialOpened;
-            tm.OnTutorialClosed -= OnTutorialClosed;
+            uim.OnOpened -= OnUIOpened;
+            uim.OnClosed -= OnUIClosed;
         }
     }
 }

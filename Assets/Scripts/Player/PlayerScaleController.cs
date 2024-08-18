@@ -5,7 +5,7 @@ public class PlayerScaleController : PlayerControllerBase
 {
     [SerializeField] private Rigidbody2D rigidBody;
 
-    public event UnityAction OnScaleChanged;
+    public override event UnityAction OnActionMade;
 
     private void Update()
     {
@@ -29,6 +29,6 @@ public class PlayerScaleController : PlayerControllerBase
     {
         transform.localScale = transform.localScale * multiplier;
         rigidBody.mass *= multiplier;
-        OnScaleChanged?.Invoke();
+        OnActionMade?.Invoke();
     }
 }
