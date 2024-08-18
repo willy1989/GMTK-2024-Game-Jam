@@ -1895,6 +1895,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4750383317286627078, guid: 42e3686a9d6fef04d9737989a184d669, type: 3}
   m_PrefabInstance: {fileID: 1210335185}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1225519150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1576100533532854623, guid: 52526929b91e544498edab9ce447af0d, type: 3}
+  m_PrefabInstance: {fileID: 1808809434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1253402313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3668458947598680456, guid: 2119d6bcfaf151c45bae0cdf85cc62d2, type: 3}
@@ -2660,6 +2671,10 @@ PrefabInstance:
       propertyPath: nextLevelName
       value: Level2
       objectReference: {fileID: 0}
+    - target: {fileID: 4677522582237865528, guid: 432d30183fa62964188cc2da94b34d58, type: 3}
+      propertyPath: selectLevelButton
+      value: 
+      objectReference: {fileID: 1225519150}
     - target: {fileID: 4677522582237865528, guid: 432d30183fa62964188cc2da94b34d58, type: 3}
       propertyPath: loadNextLevelButton
       value: 

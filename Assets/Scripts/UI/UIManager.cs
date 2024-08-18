@@ -25,6 +25,14 @@ public class UIManager : MonoBehaviour
         var tm = FindObjectOfType<TutorialManager>();
         tm.OnTutorialOpened += OnTutorialOpened;
         tm.OnTutorialClosed += OnTutorialClosed;
+
+        var gm = FindObjectOfType<GameloopManager>();
+        gm.OnCantLoadNextLevel += OnCantLoadNextLevel;
+        gm.OnLevelSelectorOpened += () => ToggleLevelSelector(onOff: true);
+
+        ToggleLevelSelector(onOff: false);
+        var ls = levelSelector.GetComponent<LevelSelector>();
+        ls.OnLevelSelectorClosed += () => ToggleLevelSelector(onOff: false);
     }
 
     private void OnTutorialOpened()
@@ -39,6 +47,12 @@ public class UIManager : MonoBehaviour
         OnClosed?.Invoke();
     }
 
+    private void OnCantLoadNextLevel()
+    {
+        Debug.Log("[ui] can't load next level so opening level selector");
+        ToggleLevelSelector(onOff: true);
+    }
+
     private void ToggleGameOverMenu(bool onOff)
     {
         gameOverMenu.gameObject.SetActive(onOff);
@@ -49,23 +63,27 @@ public class UIManager : MonoBehaviour
         levelCompleteMenu.gameObject.SetActive(onOff);
     }
 
-    private void Update()
+    private void ToggleLevelSelector(bool onOff)
     {
-        if (!tutorialOpen && Input.GetKeyDown(KeyCode.Escape))
-        {
-            var isOpen = levelSelector.activeSelf;
-            levelSelector.SetActive(!isOpen);
+        levelSelector.SetActive(onOff);
 
-            if (isOpen)
-            {
-                OnClosed?.Invoke();
-            }
-            else
-            {
-                OnOpened?.Invoke();
-            }
+        if (onOff)
+        {
+            OnOpened?.Invoke();
+        }
+        else
+        {
+            OnClosed?.Invoke();
         }
     }
+
+    //private void Update()
+    //{
+    //    if (!tutorialOpen && Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        ToggleLevelSelector(!levelSelector.activeSelf);
+    //    }
+    //}
 
     private void OnDestroy()
     {
@@ -74,6 +92,12 @@ public class UIManager : MonoBehaviour
         {
             tm.OnTutorialOpened -= OnTutorialOpened;
             tm.OnTutorialClosed -= OnTutorialClosed;
+        }
+
+        var gm = FindObjectOfType<GameloopManager>();
+        if (gm != null)
+        {
+            gm.OnCantLoadNextLevel -= OnCantLoadNextLevel;
         }
     }
 }

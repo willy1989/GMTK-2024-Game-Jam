@@ -2344,6 +2344,11 @@ PrefabInstance:
       propertyPath: endOfLevelZone
       value: 
       objectReference: {fileID: 1956424302}
+    - target: {fileID: 1658193525561460329, guid: 52526929b91e544498edab9ce447af0d, type: 3}
+      propertyPath: textContent
+      value: Use the Up and Down arrows to increase/decrease your size. Use this
+        to get to the end of the level!
+      objectReference: {fileID: 0}
     - target: {fileID: 4250914975284425465, guid: 52526929b91e544498edab9ce447af0d, type: 3}
       propertyPath: m_Pivot.x
       value: 0

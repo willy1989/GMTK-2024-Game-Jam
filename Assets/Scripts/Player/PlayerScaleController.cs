@@ -7,7 +7,7 @@ public class PlayerScaleController : PlayerControllerBase
 
     [SerializeField] private int maxNumberOfScaleChanges;
 
-    public event UnityAction OnScaleChanged;
+    public override event UnityAction OnActionMade;
 
     private float[] scaleValues;
 
@@ -63,7 +63,7 @@ public class PlayerScaleController : PlayerControllerBase
 
         transform.localScale = new Vector3(1, 1, 1) * scaleValue;
         rigidBody.mass = scaleValue;
-        OnScaleChanged?.Invoke();
+        OnActionMade?.Invoke();
     }
 
     private float[] ScaleValues(int maxSteps)
