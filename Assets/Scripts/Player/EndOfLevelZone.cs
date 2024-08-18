@@ -4,19 +4,18 @@ using UnityEngine.Events;
 public class EndOfLevelZone : MonoBehaviour
 {
     public event UnityAction EndOfLevelReachedEvent;
+    private bool endReached;
 
     private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player") == false)
+        if (endReached
+            || collider.gameObject.CompareTag("Player") == false
+            || !collider.gameObject.TryGetComponent<Rigidbody2D>(out var rigidBody)
+            || rigidBody.velocity.magnitude >= 0.5f)
             return;
 
-        if (!collider.gameObject.TryGetComponent<Rigidbody2D>(out var rigidBody))
-            return;
-
-        if (rigidBody.velocity.magnitude < 0.5f)
-        {
-            Debug.Log("End of level reached.");
-            EndOfLevelReachedEvent?.Invoke();
-        }
+        Debug.Log("End of level reached.");
+        EndOfLevelReachedEvent?.Invoke();
+        endReached = true;
     }
 }

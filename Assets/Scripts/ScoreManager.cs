@@ -17,6 +17,10 @@ public class ScoreManager : Singleton<ScoreManager>
     private int bestLevelScore;
     private int totalScore;
 
+    private PlayerMovementController pmc;
+    private PlayerScaleController psc;
+    private EndOfLevelZone eolz;
+
     // Track best scores for each level to produce an aggregate score 
     private readonly Dictionary<string, int> bestScoreByLevel = new();
 
@@ -36,7 +40,7 @@ public class ScoreManager : Singleton<ScoreManager>
         scaleChangedCount = 0;
         UpdateScore();
 
-        var pmc = FindObjectOfType<PlayerMovementController>(true);
+        pmc = FindObjectOfType<PlayerMovementController>(true);
         if (pmc != null)
         {
             pmc.OnForceAdded += OnForceAdded;
@@ -46,7 +50,7 @@ public class ScoreManager : Singleton<ScoreManager>
             Debug.LogError("PlayerMovementController not found");
         }
 
-        var psc = FindObjectOfType<PlayerScaleController>(true);
+        psc = FindObjectOfType<PlayerScaleController>(true);
         if (psc != null)
         {
             psc.OnScaleChanged += OnScaleChanged;
@@ -56,7 +60,7 @@ public class ScoreManager : Singleton<ScoreManager>
             Debug.LogError("PlayerScaleController not found");
         }
 
-        var eolz = FindObjectOfType<EndOfLevelZone>(true);
+        eolz = FindObjectOfType<EndOfLevelZone>(true);
         if (eolz != null)
         {
             eolz.EndOfLevelReachedEvent += OnEndOfLevelReached;
@@ -65,6 +69,16 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             Debug.LogError("EndOfLevelZone not found");
         }
+    }
+
+    protected override void OnSceneUnloaded(Scene scene)
+    {
+        base.OnSceneUnloaded(scene);
+
+        // Clean up listeners
+        pmc.OnForceAdded -= OnForceAdded;
+        psc.OnScaleChanged -= OnScaleChanged;
+        eolz.EndOfLevelReachedEvent -= OnEndOfLevelReached;
     }
 
     public void OnForceAdded()
