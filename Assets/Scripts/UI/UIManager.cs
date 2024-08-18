@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
         var tm = FindObjectOfType<TutorialManager>();
         tm.OnTutorialOpened += OnTutorialOpened;
         tm.OnTutorialClosed += OnTutorialClosed;
+
+        var gm = FindObjectOfType<GameloopManager>();
+        gm.OnCantLoadNextLevel += OnCantLoadNextLevel;
     }
 
     private void OnTutorialOpened()
@@ -39,6 +42,12 @@ public class UIManager : MonoBehaviour
         OnClosed?.Invoke();
     }
 
+    private void OnCantLoadNextLevel()
+    {
+        Debug.Log("[ui] can't load next level so opening level selector");
+        ToggleLevelSelector(onOff: true);
+    }
+
     private void ToggleGameOverMenu(bool onOff)
     {
         gameOverMenu.gameObject.SetActive(onOff);
@@ -49,21 +58,25 @@ public class UIManager : MonoBehaviour
         levelCompleteMenu.gameObject.SetActive(onOff);
     }
 
+    private void ToggleLevelSelector(bool onOff)
+    {
+        levelSelector.SetActive(onOff);
+
+        if (onOff)
+        {
+            OnOpened?.Invoke();
+        }
+        else
+        {
+            OnClosed?.Invoke();
+        }
+    }
+
     private void Update()
     {
         if (!tutorialOpen && Input.GetKeyDown(KeyCode.Escape))
         {
-            var isOpen = levelSelector.activeSelf;
-            levelSelector.SetActive(!isOpen);
-
-            if (isOpen)
-            {
-                OnClosed?.Invoke();
-            }
-            else
-            {
-                OnOpened?.Invoke();
-            }
+            ToggleLevelSelector(!levelSelector.activeSelf);
         }
     }
 
@@ -74,6 +87,12 @@ public class UIManager : MonoBehaviour
         {
             tm.OnTutorialOpened -= OnTutorialOpened;
             tm.OnTutorialClosed -= OnTutorialClosed;
+        }
+
+        var gm = FindObjectOfType<GameloopManager>();
+        if (gm != null)
+        {
+            gm.OnCantLoadNextLevel -= OnCantLoadNextLevel;
         }
     }
 }

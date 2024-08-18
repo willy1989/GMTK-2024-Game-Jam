@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameloopManager : MonoBehaviour
@@ -10,6 +11,8 @@ public class GameloopManager : MonoBehaviour
     [SerializeField] private Button loadNextLevelButton;
 
     [SerializeField] string nextLevelName;
+
+    public event UnityAction OnCantLoadNextLevel;
 
     private void Awake()
     {
@@ -25,6 +28,14 @@ public class GameloopManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        Utils.LoadNextLevel(nextLevelName);
+        // No more levels (should probably check build scene index but this is fine)
+        if (string.IsNullOrWhiteSpace(nextLevelName))
+        {
+            OnCantLoadNextLevel?.Invoke();
+        }
+        else
+        {
+            Utils.LoadNextLevel(nextLevelName);
+        }
     }
 }

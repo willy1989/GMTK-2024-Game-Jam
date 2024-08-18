@@ -1690,13 +1690,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4476073990126419102, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
       propertyPath: m_Name
-      value: TutorialCanvas
+      value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 7708023838449232586, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5476468297709824055, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+    - {fileID: 7708023838449232586, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+    - {fileID: 6097995607056123380, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
