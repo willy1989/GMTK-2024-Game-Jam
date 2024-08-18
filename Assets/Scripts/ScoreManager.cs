@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
     [SerializeField] private Config config;
+    [SerializeField] private TMP_Text levelScoreText;
 
     private int forceAddedCount;
     private int scaleChangedCount;
@@ -13,9 +15,9 @@ public class ScoreManager : Singleton<ScoreManager>
     protected override void OnActiveSceneChanged(Scene prev, Scene next)
     {
         base.OnActiveSceneChanged(prev, next);
-        levelScore = 0;
         forceAddedCount = 0;
         scaleChangedCount = 0;
+        UpdateScore();
 
         var pmc = FindObjectOfType<PlayerMovementController>(true);
         if (pmc != null)
@@ -67,10 +69,12 @@ public class ScoreManager : Singleton<ScoreManager>
         levelScore = level.BaseScore - (level.MovePenalty * (forceAddedCount + scaleChangedCount));
         levelScore = Mathf.Max(levelScore, 0);
         Debug.Log("[score] level score updated to: " + levelScore);
+
+        levelScoreText.SetText("Level score: " + levelScore);
     }
 
     public void OnEndOfLevelReached()
     {
-        Debug.Log("[score] Final level score: " + levelScore);
+        Debug.Log("[score] final level score: " + levelScore);
     }
 }
