@@ -5,7 +5,37 @@ public class PlayerScaleController : PlayerControllerBase
 {
     [SerializeField] private Rigidbody2D rigidBody;
 
-    public override event UnityAction OnActionMade;
+    [SerializeField] private int maxNumberOfScaleChanges;
+
+    public event UnityAction OnScaleChanged;
+
+    private float[] scaleValues;
+
+    private int _scaleValueIndex;
+
+    private int scaleValueIndex
+    {
+        get
+        {
+            return _scaleValueIndex;
+        }
+
+        set
+        {
+            if (value >= 0 && value <= scaleValues.Length-1)
+            {
+                _scaleValueIndex = value;
+            }
+        }
+    }
+
+
+    private void Awake()
+    {
+        scaleValues = ScaleValues(maxNumberOfScaleChanges);
+
+        scaleValueIndex = maxNumberOfScaleChanges;
+    }
 
     private void Update()
     {
@@ -16,19 +46,39 @@ public class PlayerScaleController : PlayerControllerBase
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            ChangeScale(multiplier: 2f);
+            ChangeScale(increment:1);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            ChangeScale(multiplier: 0.5f);
+            ChangeScale(increment: -1);
         }
     }
 
-    private void ChangeScale(float multiplier)
+    private void ChangeScale(int increment)
     {
-        transform.localScale = transform.localScale * multiplier;
-        rigidBody.mass *= multiplier;
-        OnActionMade?.Invoke();
+        scaleValueIndex += increment;
+
+        float scaleValue = scaleValues[scaleValueIndex];
+
+        transform.localScale = new Vector3(1, 1, 1) * scaleValue;
+        rigidBody.mass = scaleValue;
+        OnScaleChanged?.Invoke();
+    }
+
+    private float[] ScaleValues(int maxSteps)
+    {
+        int totalNumberOfSteps = maxSteps * 2 + 1;
+
+        float[] result = new float[totalNumberOfSteps];
+
+        float startNumber = 1f / Mathf.Pow(2, maxSteps);
+
+        for (int i = 0; i < totalNumberOfSteps; i++)
+        {
+            result[i] = startNumber * Mathf.Pow(2, i);
+        }
+
+        return result;
     }
 }
