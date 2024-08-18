@@ -43,7 +43,7 @@ public class ScoreManager : Singleton<ScoreManager>
         pmc = FindObjectOfType<PlayerMovementController>(true);
         if (pmc != null)
         {
-            pmc.OnForceAdded += OnForceAdded;
+            pmc.OnActionMade += OnForceAdded;
         }
         else
         {
@@ -53,7 +53,7 @@ public class ScoreManager : Singleton<ScoreManager>
         psc = FindObjectOfType<PlayerScaleController>(true);
         if (psc != null)
         {
-            psc.OnScaleChanged += OnScaleChanged;
+            psc.OnActionMade += OnScaleChanged;
         }
         else
         {
@@ -76,8 +76,8 @@ public class ScoreManager : Singleton<ScoreManager>
         base.OnSceneUnloaded(scene);
 
         // Clean up listeners
-        pmc.OnForceAdded -= OnForceAdded;
-        psc.OnScaleChanged -= OnScaleChanged;
+        pmc.OnActionMade -= OnForceAdded;
+        psc.OnActionMade -= OnScaleChanged;
         eolz.EndOfLevelReachedEvent -= OnEndOfLevelReached;
     }
 
