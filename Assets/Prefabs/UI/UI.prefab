@@ -840,6 +840,7 @@ RectTransform:
   - {fileID: 8075928511946041750}
   - {fileID: 5781649026882665942}
   - {fileID: 7267360406217397222}
+  - {fileID: 964076535675424579}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1302,3 +1303,114 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &741608029323285915
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4250914975284425465}
+    m_Modifications:
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110409950224569330, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: textContent
+      value: Use WASD to apply directional force to the player. Your goal is to reach
+        the end zone, which is in the bottom right hand corner of the screen!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476073990126419102, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_Name
+      value: TutorialCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7708023838449232586, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+--- !u!224 &964076535675424579 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 516697977203284696, guid: 2ae831801cfda4140ab0e438d48bd276, type: 3}
+  m_PrefabInstance: {fileID: 741608029323285915}
+  m_PrefabAsset: {fileID: 0}
