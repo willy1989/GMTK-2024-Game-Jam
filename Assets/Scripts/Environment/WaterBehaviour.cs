@@ -31,7 +31,7 @@ public class WaterBehaviour : MonoBehaviour
         playerRb.drag = waterDrag;
         playerRb.angularDrag = angularDrag;
 
-        Debug.Log("[env] Entered water");
+        //Debug.Log("[env] Entered water");
     }
 
     private void OnTriggerStay2D(Collider2D collider)
@@ -69,6 +69,6 @@ public class WaterBehaviour : MonoBehaviour
         playerRb.angularDrag = originalAngularDrag;
 
         isInWater = false;
-        Debug.Log("[env] Exited water");
+        //Debug.Log("[env] Exited water");
     }
 }
