@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,19 @@ public class ScoreManager : Singleton<ScoreManager>
     private int forceAddedCount;
     private int scaleChangedCount;
     private int levelScore;
-    //private int totalScore;
+    private int bestLevelScore;
+    private int totalScore;
+
+    // track best scores for each level to produce an aggregate score 
+    private readonly Dictionary<string, int> bestScoreByLevel = new();
+
+    protected override void Init()
+    {
+        foreach (var level in config.Levels)
+        {
+            _ = bestScoreByLevel.TryAdd(level.SceneName, default);
+        }
+    }
 
     protected override void OnActiveSceneChanged(Scene prev, Scene next)
     {
@@ -75,6 +88,25 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void OnEndOfLevelReached()
     {
+        var level = config.GetLevelBySceneName(SceneManager.GetActiveScene().name);
         Debug.Log("[score] final level score: " + levelScore);
+
+        if (levelScore > bestLevelScore)
+        {
+            bestLevelScore = levelScore;
+        }
+
+        var bestEverLevelScore = bestScoreByLevel[level.SceneName];
+        if (bestLevelScore > bestEverLevelScore)
+        {
+            bestScoreByLevel[level.SceneName] = bestLevelScore;
+        }
+
+        totalScore = 0;
+        foreach (var bestScore in bestScoreByLevel.Values)
+        {
+            totalScore += bestScore;
+        }
+        Debug.Log("[score] total score: " + totalScore);
     }
 }
