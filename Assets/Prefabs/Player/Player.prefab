@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 6073256654197929896}
+  maxNumberOfScaleChanges: 2
 --- !u!212 &3669455149491518148
 SpriteRenderer:
   m_ObjectHideFlags: 0
