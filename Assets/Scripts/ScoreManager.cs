@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ public class ScoreManager : Singleton<ScoreManager>
 {
     [SerializeField] private Config config;
     [SerializeField] private TMP_Text levelScoreText;
+    [SerializeField] private TMP_Text bestLevelScoreText;
+    [SerializeField] private TMP_Text totalScoreText;
 
     private int forceAddedCount;
     private int scaleChangedCount;
@@ -14,14 +17,15 @@ public class ScoreManager : Singleton<ScoreManager>
     private int bestLevelScore;
     private int totalScore;
 
-    // track best scores for each level to produce an aggregate score 
+    // Track best scores for each level to produce an aggregate score 
     private readonly Dictionary<string, int> bestScoreByLevel = new();
 
     protected override void Init()
     {
+        base.Init();
         foreach (var level in config.Levels)
         {
-            _ = bestScoreByLevel.TryAdd(level.SceneName, default);
+            bestScoreByLevel.Add(level.SceneName, default);
         }
     }
 
@@ -95,12 +99,14 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             bestLevelScore = levelScore;
         }
+        bestLevelScoreText.SetText("Level high score: " + bestLevelScore);
 
         var bestEverLevelScore = bestScoreByLevel[level.SceneName];
         if (bestLevelScore > bestEverLevelScore)
         {
             bestScoreByLevel[level.SceneName] = bestLevelScore;
         }
+        Debug.Log("[score] best score by level: " + JsonUtility.ToJson(bestScoreByLevel.ToList()));
 
         totalScore = 0;
         foreach (var bestScore in bestScoreByLevel.Values)
@@ -108,5 +114,6 @@ public class ScoreManager : Singleton<ScoreManager>
             totalScore += bestScore;
         }
         Debug.Log("[score] total score: " + totalScore);
+        totalScoreText.SetText("Total score: " + totalScore);
     }
 }

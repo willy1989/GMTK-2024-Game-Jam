@@ -29,12 +29,12 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void OnActiveSceneChanged(Scene prev, Scene next)
     {
-        Debug.Log($"[singleton] {name} active scene changed from {prev} to {next}");
+        Debug.Log($"[singleton] {name} active scene changed from {prev.name} to {next.name}");
     }
 
     protected virtual void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log($"[singleton] {name} scene unloaded: {scene}");
+        Debug.Log($"[singleton] {name} scene unloaded: {scene.name}");
     }
 
     protected virtual void OnDestroy()

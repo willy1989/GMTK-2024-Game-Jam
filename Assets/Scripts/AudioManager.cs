@@ -15,6 +15,9 @@ public class AudioManager : Singleton<AudioManager>
     protected override void OnActiveSceneChanged(Scene prev, Scene next)
     {
         base.OnActiveSceneChanged(prev, next);
+        if (prev.name == null)
+            return;
+
         PlayMusic(next.name);
     }
 
