@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,26 +7,20 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private Config config;
     [SerializeField] private AudioSource musicSource;
 
-    public override void Init()
-    {
-        base.Init();
-        SceneManager.activeSceneChanged += OnActiveSceneChanged;
-    }
-
     private void Start()
     {
         PlayMusic(SceneManager.GetActiveScene().name);
     }
 
-    private void OnActiveSceneChanged(Scene prev, Scene next)
+    protected override void OnActiveSceneChanged(Scene prev, Scene next)
     {
-        Debug.Log($"[audio] active scene changed from {prev} to {next}");
+        base.OnActiveSceneChanged(prev, next);
         PlayMusic(next.name);
     }
 
     private void PlayMusic(string levelName)
     {
-        var level = config.Levels.FirstOrDefault(l => l.SceneName == levelName);
+        var level = config.GetLevelBySceneName(levelName);
         if (level == null)
         {
             Debug.LogError("[audio] level not found: " + levelName);

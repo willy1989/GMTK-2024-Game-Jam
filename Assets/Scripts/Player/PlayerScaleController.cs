@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerScaleController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigidBody;
+
+    public event UnityAction OnScaleChanged;
 
     private void Update()
     {
@@ -23,5 +24,6 @@ public class PlayerScaleController : MonoBehaviour
     {
         transform.localScale = transform.localScale * multiplier;
         rigidBody.mass *= multiplier;
+        OnScaleChanged?.Invoke();
     }
 }

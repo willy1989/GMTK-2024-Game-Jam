@@ -1,27 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EndOfLevelZone : MonoBehaviour
 {
-    public Action EndOfLevelReachedEvent;
+    public event UnityAction EndOfLevelReachedEvent;
 
     private void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player") == false)
             return;
 
-        Rigidbody2D rigidBody = collider.gameObject.GetComponent<Rigidbody2D>();
-
-        if (rigidBody == null)
+        if (!collider.gameObject.TryGetComponent<Rigidbody2D>(out var rigidBody))
             return;
 
-        if(rigidBody.velocity.magnitude < 0.5f)
+        if (rigidBody.velocity.magnitude < 0.5f)
         {
             Debug.Log("End of level reached.");
             EndOfLevelReachedEvent?.Invoke();
         }
-            
     }
 }
