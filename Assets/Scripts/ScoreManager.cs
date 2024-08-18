@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,7 +37,10 @@ public class ScoreManager : Singleton<ScoreManager>
         base.OnActiveSceneChanged(prev, next);
         forceAddedCount = 0;
         scaleChangedCount = 0;
+        bestLevelScore = bestScoreByLevel[next.name];
+
         UpdateScore();
+        DisplayScore();
 
         pmc = FindObjectOfType<PlayerMovementController>(true);
         if (pmc != null)
@@ -85,12 +87,21 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         forceAddedCount++;
         UpdateScore();
+        DisplayScore();
     }
 
     public void OnScaleChanged()
     {
         scaleChangedCount++;
         UpdateScore();
+        DisplayScore();
+    }
+
+    private void DisplayScore()
+    {
+        levelScoreText.SetText("Level score: " + levelScore);
+        bestLevelScoreText.SetText("Level high score: " + bestLevelScore);
+        totalScoreText.SetText("Total score: " + totalScore);
     }
 
     void UpdateScore()
@@ -100,27 +111,23 @@ public class ScoreManager : Singleton<ScoreManager>
         levelScore = level.BaseScore - (level.MovePenalty * (forceAddedCount + scaleChangedCount));
         levelScore = Mathf.Max(levelScore, 0);
         Debug.Log("[score] level score updated to: " + levelScore);
-
-        levelScoreText.SetText("Level score: " + levelScore);
     }
 
     public void OnEndOfLevelReached()
     {
         var level = config.GetLevelBySceneName(SceneManager.GetActiveScene().name);
-        Debug.Log("[score] final level score: " + levelScore);
+        Debug.Log("[score] end of level score: " + levelScore);
 
         if (levelScore > bestLevelScore)
         {
             bestLevelScore = levelScore;
         }
-        bestLevelScoreText.SetText("Level high score: " + bestLevelScore);
 
         var bestEverLevelScore = bestScoreByLevel[level.SceneName];
         if (bestLevelScore > bestEverLevelScore)
         {
             bestScoreByLevel[level.SceneName] = bestLevelScore;
         }
-        Debug.Log("[score] best score by level: " + JsonUtility.ToJson(bestScoreByLevel.ToList()));
 
         totalScore = 0;
         foreach (var bestScore in bestScoreByLevel.Values)
@@ -128,6 +135,6 @@ public class ScoreManager : Singleton<ScoreManager>
             totalScore += bestScore;
         }
         Debug.Log("[score] total score: " + totalScore);
-        totalScoreText.SetText("Total score: " + totalScore);
+        DisplayScore();
     }
 }
