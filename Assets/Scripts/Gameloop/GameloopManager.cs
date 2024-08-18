@@ -10,15 +10,19 @@ public class GameloopManager : MonoBehaviour
 
     [SerializeField] private Button loadNextLevelButton;
 
+    [SerializeField] private Button selectLevelButton;
+
     [SerializeField] string nextLevelName;
 
     public event UnityAction OnCantLoadNextLevel;
+    public event UnityAction OnLevelSelectorOpened;
 
     private void Awake()
     {
         restartLevelButtonInGame.onClick.AddListener(RestartLevel);
         restartLevelButtonGameOverMenu.onClick.AddListener(RestartLevel);
         loadNextLevelButton.onClick.AddListener(LoadNextLevel);
+        selectLevelButton.onClick.AddListener(OpenLevelSelector);
     }
 
     private void RestartLevel()
@@ -26,7 +30,7 @@ public class GameloopManager : MonoBehaviour
         Utils.RestartLevel();
     }
 
-    public void LoadNextLevel()
+    private void LoadNextLevel()
     {
         // No more levels (should probably check build scene index but this is fine)
         if (string.IsNullOrWhiteSpace(nextLevelName))
@@ -37,5 +41,10 @@ public class GameloopManager : MonoBehaviour
         {
             Utils.LoadNextLevel(nextLevelName);
         }
+    }
+
+    private void OpenLevelSelector()
+    {
+        OnLevelSelectorOpened?.Invoke();
     }
 }

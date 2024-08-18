@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
         var gm = FindObjectOfType<GameloopManager>();
         gm.OnCantLoadNextLevel += OnCantLoadNextLevel;
+        gm.OnLevelSelectorOpened += () => ToggleLevelSelector(onOff: true);
 
         ToggleLevelSelector(onOff: false);
         var ls = levelSelector.GetComponent<LevelSelector>();
@@ -76,13 +77,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (!tutorialOpen && Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleLevelSelector(!levelSelector.activeSelf);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (!tutorialOpen && Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        ToggleLevelSelector(!levelSelector.activeSelf);
+    //    }
+    //}
 
     private void OnDestroy()
     {
