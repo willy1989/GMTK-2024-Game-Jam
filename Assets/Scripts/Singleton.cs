@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static T Instance { get; private set; }
+    private bool hasInit;
 
     protected virtual void Awake()
     {
@@ -10,14 +12,38 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             Instance = (T)(Object)this;
             DontDestroyOnLoad(gameObject);
+            Init();
+            hasInit = true;
             return;
         }
-        Debug.Log("Destroying redundant instance " + name);
+        Debug.Log("[singleton] Destroying redundant instance " + name);
         Destroy(gameObject);
     }
 
-    public virtual void Init()
+    protected virtual void Init()
     {
-        Debug.Log(GetType() + " initializing...");
+        Debug.Log($"[singleton] {GetType()} {name} initializing...");
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    protected virtual void OnActiveSceneChanged(Scene prev, Scene next)
+    {
+        Debug.Log($"[singleton] {name} active scene changed from {prev.name} to {next.name}");
+    }
+
+    protected virtual void OnSceneUnloaded(Scene scene)
+    {
+        Debug.Log($"[singleton] {name} scene unloaded: {scene.name}");
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (hasInit)
+        {
+            SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        }
+        hasInit = false;
     }
 }
