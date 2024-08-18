@@ -28,6 +28,10 @@ public class UIManager : MonoBehaviour
 
         var gm = FindObjectOfType<GameloopManager>();
         gm.OnCantLoadNextLevel += OnCantLoadNextLevel;
+
+        ToggleLevelSelector(onOff: false);
+        var ls = levelSelector.GetComponent<LevelSelector>();
+        ls.OnLevelSelectorClosed += () => ToggleLevelSelector(onOff: false);
     }
 
     private void OnTutorialOpened()
