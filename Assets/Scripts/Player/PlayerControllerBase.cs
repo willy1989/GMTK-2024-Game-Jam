@@ -8,7 +8,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
 
     private void Awake()
     {
-        // Freeze in tutorial screen 
+        // Freeze when UI is open  
         var uim = FindObjectOfType<UIManager>();
         uim.OnOpened += OnUIOpened;
         uim.OnClosed += OnUIClosed;

@@ -25,7 +25,3 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: b6b31e6bfa9d8a54a826a8a6fe510f7a, type: 3}
     BaseScore: 2000
     MovePenalty: 50
-  - SceneName: MaxTestLevel7
-    Music: {fileID: 8300000, guid: b6b31e6bfa9d8a54a826a8a6fe510f7a, type: 3}
-    BaseScore: 1000
-    MovePenalty: 50
