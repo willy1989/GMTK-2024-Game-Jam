@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerScaleController : MonoBehaviour
+public class PlayerScaleController : PlayerControllerBase
 {
     [SerializeField] private Rigidbody2D rigidBody;
 
@@ -9,6 +9,11 @@ public class PlayerScaleController : MonoBehaviour
 
     private void Update()
     {
+        if (isFrozen)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             ChangeScale(multiplier: 2f);

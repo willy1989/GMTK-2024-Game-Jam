@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
@@ -11,6 +12,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject staticCard;
     [SerializeField] private GameObject background;
 
+    public event UnityAction OnTutorialOpened;
+    public event UnityAction OnTutorialClosed;
+
+    // TODO: only show popup on first try of level?
     private void Start()
     {
         var staticText = staticCard.GetComponentInChildren<TMP_Text>();
@@ -23,6 +28,7 @@ public class TutorialManager : MonoBehaviour
         button.onClick.AddListener(OnPopupClose);
 
         background.SetActive(true);
+        OnTutorialOpened?.Invoke();
     }
 
     public void OnPopupClose()
@@ -30,6 +36,7 @@ public class TutorialManager : MonoBehaviour
         popup.SetActive(false);
         staticCard.SetActive(true);
         background.SetActive(false);
+        OnTutorialClosed?.Invoke();
     }
 
     private void OnDestroy()

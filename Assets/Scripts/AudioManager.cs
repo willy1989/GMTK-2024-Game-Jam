@@ -6,19 +6,18 @@ public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] private Config config;
     [SerializeField] private AudioSource musicSource;
-
-    private void Start()
-    {
-        PlayMusic(SceneManager.GetActiveScene().name);
-    }
+    private string sceneName;
 
     protected override void OnActiveSceneChanged(Scene prev, Scene next)
     {
         base.OnActiveSceneChanged(prev, next);
-        if (prev.name == null)
+
+        // Reloading 
+        if (next.name == sceneName)
             return;
 
-        PlayMusic(next.name);
+        sceneName = next.name;
+        PlayMusic(sceneName);
     }
 
     private void PlayMusic(string levelName)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : PlayerControllerBase
 {
     [SerializeField] private Rigidbody2D rigidBody;
 
@@ -11,6 +11,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
+        if (isFrozen)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             AddForce(Vector2.up);
