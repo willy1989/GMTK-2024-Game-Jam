@@ -7,7 +7,7 @@ public class PlayerMovementController : PlayerControllerBase
 
     [SerializeField] private float forceAmount;
 
-    public event UnityAction OnForceAdded;
+    public override event UnityAction OnActionMade;
 
     private void Update()
     {
@@ -40,6 +40,6 @@ public class PlayerMovementController : PlayerControllerBase
     private void AddForce(Vector2 force)
     {
         rigidBody.AddForce(force * forceAmount, ForceMode2D.Impulse);
-        OnForceAdded?.Invoke();
+        OnActionMade?.Invoke();
     }
 }
