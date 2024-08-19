@@ -16,12 +16,12 @@ MonoBehaviour:
   - SceneName: Level1
     Music: {fileID: 8300000, guid: 70db9ccbe9045b34a921b5458d8c2107, type: 3}
     BaseScore: 1000
-    MovePenalty: 50
+    ActionPenalty: 25
   - SceneName: Level2
     Music: {fileID: 8300000, guid: 8a354d827a549cc4ba9f7ac6cb09e6a8, type: 3}
     BaseScore: 1500
-    MovePenalty: 50
+    ActionPenalty: 30
   - SceneName: Level3
     Music: {fileID: 8300000, guid: 4cdaa92ce11440449b8dfc29fc6a4f80, type: 3}
     BaseScore: 2000
-    MovePenalty: 50
+    ActionPenalty: 35
