@@ -7,6 +7,8 @@ public class PlayerMovementController : PlayerControllerBase
 
     [SerializeField] private float forceAmount;
 
+    [SerializeField] private SoundEffectPlayer soundEffectPlayer;
+
     public override event UnityAction OnActionMade;
 
     private void Update()
@@ -41,5 +43,6 @@ public class PlayerMovementController : PlayerControllerBase
     {
         rigidBody.AddForce(force * forceAmount, ForceMode2D.Impulse);
         OnActionMade?.Invoke();
+        soundEffectPlayer.PlaySoundEffect();
     }
 }

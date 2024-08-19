@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioManager : Singleton<AudioManager>
+public class MusicManager : Singleton<MusicManager>
 {
     [SerializeField] private Config config;
+
     [SerializeField] private AudioSource musicSource;
+
     private string sceneName;
 
     protected override void OnActiveSceneChanged(Scene prev, Scene next)

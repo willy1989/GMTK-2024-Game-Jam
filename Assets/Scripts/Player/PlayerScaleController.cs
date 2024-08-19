@@ -7,6 +7,8 @@ public class PlayerScaleController : PlayerControllerBase
 
     [SerializeField] private int maxNumberOfScaleChanges;
 
+    [SerializeField] private SoundEffectPlayer soundEffectPlayer;
+
     public override event UnityAction OnActionMade;
 
     private float[] scaleValues;
@@ -64,6 +66,7 @@ public class PlayerScaleController : PlayerControllerBase
         transform.localScale = new Vector3(1, 1, 1) * scaleValue;
         rigidBody.mass = scaleValue;
         OnActionMade?.Invoke();
+        soundEffectPlayer.PlaySoundEffect();
     }
 
     private float[] ScaleValues(int maxSteps)
