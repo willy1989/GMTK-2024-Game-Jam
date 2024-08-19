@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class EnvironmentGravityModifier : EnvironmentModifierBase
 {
+    [SerializeField] private bool isSingleUse;
+    [SerializeField] private Sprite usedSprite;
+    private SpriteRenderer spriteRenderer;
+    private bool isUsed;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public override void Modify()
     {
         var gravFactor = isIncreasing ? factor : -factor;
@@ -14,9 +24,15 @@ public class EnvironmentGravityModifier : EnvironmentModifierBase
     protected override void OnTriggerEnter2D(Collider2D collider)
     {
         base.OnTriggerEnter2D(collider);
-        if (!collider.ComparePlayerTag())
+        if (!collider.ComparePlayerTag() || (isSingleUse && isUsed))
             return;
 
         Modify();
+        isUsed = true;
+
+        if (isSingleUse)
+        {
+            spriteRenderer.sprite = usedSprite;
+        }
     }
 }

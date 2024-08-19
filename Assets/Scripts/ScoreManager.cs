@@ -107,8 +107,11 @@ public class ScoreManager : Singleton<ScoreManager>
     void UpdateScore()
     {
         var level = config.GetLevelBySceneName(SceneManager.GetActiveScene().name);
+        var totalActions = forceAddedCount + scaleChangedCount;
+        var penalty = Mathf.CeilToInt(level.ActionPenalty * Mathf.Pow(totalActions, 2)); // quadratic
+        Debug.Log("[score] action penalty: " + penalty);
 
-        levelScore = level.BaseScore - (level.MovePenalty * (forceAddedCount + scaleChangedCount));
+        levelScore = level.BaseScore - penalty;
         levelScore = Mathf.Max(levelScore, 0);
         Debug.Log("[score] level score updated to: " + levelScore);
     }

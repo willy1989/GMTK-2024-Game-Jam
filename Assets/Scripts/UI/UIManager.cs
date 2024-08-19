@@ -77,13 +77,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //private void Update()
-    //{
-    //    if (!tutorialOpen && Input.GetKeyDown(KeyCode.Escape))
-    //    {
-    //        ToggleLevelSelector(!levelSelector.activeSelf);
-    //    }
-    //}
+    private void Update()
+    {
+        if (!tutorialOpen && Input.GetKeyDown(KeyCode.Escape))
+        {
+            //ToggleLevelSelector(!levelSelector.activeSelf);
+        }
+    }
 
     private void OnDestroy()
     {
