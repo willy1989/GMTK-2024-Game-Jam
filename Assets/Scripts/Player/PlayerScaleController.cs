@@ -64,6 +64,7 @@ public class PlayerScaleController : PlayerControllerBase
         transform.localScale = new Vector3(1, 1, 1) * scaleValue;
         rigidBody.mass = scaleValue;
         OnActionMade?.Invoke();
+        AudioManager.Instance.PlaySoundEffect("ChangeSize");
     }
 
     private float[] ScaleValues(int maxSteps)

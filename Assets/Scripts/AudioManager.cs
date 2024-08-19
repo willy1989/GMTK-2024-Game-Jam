@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] private Config config;
+    [SerializeField] private SoundEffectDatabase soundEffectDatabase;
     [SerializeField] private AudioSource musicSource;
+
+    [SerializeField] private AudioSource soundEffectSource;
     private string sceneName;
 
     protected override void OnActiveSceneChanged(Scene prev, Scene next)
@@ -39,5 +42,14 @@ public class AudioManager : Singleton<AudioManager>
         musicSource.Stop();
         musicSource.clip = level.Music;
         musicSource.Play();
+    }
+
+    public void PlaySoundEffect(string aSoundEffectName)
+    {
+        AudioClip audioClip = soundEffectDatabase.SoundEffectData(aSoundEffectName).AudioClip;
+
+        soundEffectSource.clip = audioClip;
+
+        soundEffectSource.Play();
     }
 }

@@ -41,5 +41,6 @@ public class PlayerMovementController : PlayerControllerBase
     {
         rigidBody.AddForce(force * forceAmount, ForceMode2D.Impulse);
         OnActionMade?.Invoke();
+        AudioManager.Instance.PlaySoundEffect("AddForce");
     }
 }
