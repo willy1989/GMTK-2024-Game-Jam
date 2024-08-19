@@ -2497,7 +2497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677522582237865528, guid: 432d30183fa62964188cc2da94b34d58, type: 3}
       propertyPath: nextLevelName
-      value: 
+      value: MaxLevel4
       objectReference: {fileID: 0}
     - target: {fileID: 4677522582237865528, guid: 432d30183fa62964188cc2da94b34d58, type: 3}
       propertyPath: selectLevelButton

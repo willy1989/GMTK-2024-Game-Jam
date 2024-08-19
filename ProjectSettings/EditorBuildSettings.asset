@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MaxLevels/MaxLevel3.unity
     guid: 14e9941167048bd44a2b57a3be9dcf4f
+  - enabled: 1
+    path: Assets/Scenes/MaxLevels/MaxLevel4.unity
+    guid: d0017485b21056c4993e7f3a8a1334fd
   m_configObjects: {}
