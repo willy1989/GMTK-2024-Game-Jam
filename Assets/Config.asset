@@ -46,5 +46,5 @@ MonoBehaviour:
   - SceneName: MaxLevel4
     DisplayName: Level 7
     Music: {fileID: 8300000, guid: 4cdaa92ce11440449b8dfc29fc6a4f80, type: 3}
-    BaseScore: 2500
-    ActionPenalty: 5
+    BaseScore: 7500
+    ActionPenalty: 2
