@@ -33,3 +33,8 @@ MonoBehaviour:
     Music: {fileID: 8300000, guid: 70db9ccbe9045b34a921b5458d8c2107, type: 3}
     BaseScore: 2500
     ActionPenalty: 35
+  - SceneName: MaxLevel2
+    DisplayName: Level 5
+    Music: {fileID: 8300000, guid: 4cdaa92ce11440449b8dfc29fc6a4f80, type: 3}
+    BaseScore: 2500
+    ActionPenalty: 10

@@ -394,6 +394,17 @@ Transform:
   - {fileID: 1497570248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &418772938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1576100533532854623, guid: 52526929b91e544498edab9ce447af0d, type: 3}
+  m_PrefabInstance: {fileID: 1836075797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &419085254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,6 +417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameloopManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4677522582237865528, guid: 432d30183fa62964188cc2da94b34d58, type: 3}
+      propertyPath: selectLevelButton
+      value: 
+      objectReference: {fileID: 418772938}
     - target: {fileID: 4677522582237865528, guid: 432d30183fa62964188cc2da94b34d58, type: 3}
       propertyPath: loadNextLevelButton
       value: 
