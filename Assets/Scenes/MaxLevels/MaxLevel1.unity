@@ -3465,7 +3465,7 @@ GameObject:
   - component: {fileID: 1898068277257669898}
   - component: {fileID: 4237509910889920250}
   m_Layer: 0
-  m_Name: GravityScalingModifier
+  m_Name: Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
