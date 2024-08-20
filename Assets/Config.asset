@@ -14,18 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - SceneName: Level1
+    DisplayName: Level 1
     Music: {fileID: 8300000, guid: 70db9ccbe9045b34a921b5458d8c2107, type: 3}
     BaseScore: 1000
     ActionPenalty: 25
   - SceneName: Level2
+    DisplayName: Level 2
     Music: {fileID: 8300000, guid: 8a354d827a549cc4ba9f7ac6cb09e6a8, type: 3}
     BaseScore: 1500
     ActionPenalty: 30
   - SceneName: Level3
+    DisplayName: Level 3
     Music: {fileID: 8300000, guid: 4cdaa92ce11440449b8dfc29fc6a4f80, type: 3}
     BaseScore: 2000
     ActionPenalty: 35
   - SceneName: MaxLevel1
+    DisplayName: Level 4
     Music: {fileID: 8300000, guid: 70db9ccbe9045b34a921b5458d8c2107, type: 3}
     BaseScore: 2500
     ActionPenalty: 35
+  - SceneName: MaxLevel2
+    DisplayName: Level 5
+    Music: {fileID: 8300000, guid: 4cdaa92ce11440449b8dfc29fc6a4f80, type: 3}
+    BaseScore: 2500
+    ActionPenalty: 10
+  - SceneName: MaxLevel3
+    DisplayName: Level 6
+    Music: {fileID: 8300000, guid: 8a354d827a549cc4ba9f7ac6cb09e6a8, type: 3}
+    BaseScore: 2500
+    ActionPenalty: 35
+  - SceneName: MaxLevel4
+    DisplayName: Level 7
+    Music: {fileID: 8300000, guid: 4cdaa92ce11440449b8dfc29fc6a4f80, type: 3}
+    BaseScore: 7500
+    ActionPenalty: 2

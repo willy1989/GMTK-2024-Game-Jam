@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class EndOfLevelZone : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+
     public event UnityAction EndOfLevelReachedEvent;
     private bool endReached;
 
@@ -16,6 +18,7 @@ public class EndOfLevelZone : MonoBehaviour
 
         Debug.Log("End of level reached.");
         EndOfLevelReachedEvent?.Invoke();
+        audioSource.PlayOneShot(audioSource.clip);
         endReached = true;
     }
 }

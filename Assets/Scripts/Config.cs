@@ -25,6 +25,7 @@ public class Config : ScriptableObject
 public class Level
 {
     public string SceneName;
+    public string DisplayName;
     public AudioClip Music;
     public int BaseScore;
     public int ActionPenalty;

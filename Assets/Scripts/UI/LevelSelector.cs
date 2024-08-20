@@ -19,7 +19,7 @@ public class LevelSelector : MonoBehaviour
         foreach (var level in config.Levels)
         {
             var button = Instantiate(buttonPrefab, buttonContainer);
-            button.GetComponentInChildren<TMP_Text>().text = level.SceneName;
+            button.GetComponentInChildren<TMP_Text>().text = level.DisplayName ?? level.SceneName;
             button.GetComponent<Button>().onClick.AddListener(() => OnLevelButtonClicked(level.SceneName));
         }
     }
