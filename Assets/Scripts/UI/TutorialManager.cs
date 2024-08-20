@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
@@ -13,10 +14,11 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject generalCard;
     [SerializeField] private GameObject background;
 
+    [SerializeField] private Config config;
+
     public event UnityAction OnTutorialOpened;
     public event UnityAction OnTutorialClosed;
 
-    // TODO: only show popup on first try of level?
     private void Start()
     {
         var staticText = staticCard.GetComponentInChildren<TMP_Text>();
@@ -24,13 +26,29 @@ public class TutorialManager : MonoBehaviour
         staticCard.SetActive(false);
         generalCard.SetActive(false);
 
-        popup.SetActive(true);
-        popupText.SetText(textContent);
-        var button = popup.GetComponentInChildren<Button>();
-        button.onClick.AddListener(OnPopupClose);
+        var level = config.GetLevelBySceneName(SceneManager.GetActiveScene().name);
+        var key = $"{level.DisplayName}_PopupSeen";
+        var popupSeen = PlayerPrefs.GetInt(key, 0) == 1;
 
-        background.SetActive(true);
-        OnTutorialOpened?.Invoke();
+        if (!popupSeen)
+        {
+            popup.SetActive(true);
+            popupText.SetText(textContent);
+            var button = popup.GetComponentInChildren<Button>();
+            button.onClick.AddListener(OnPopupClose);
+
+            background.SetActive(true);
+            OnTutorialOpened?.Invoke();
+
+            PlayerPrefs.SetInt(key, 1);
+        }
+        else
+        {
+            popup.SetActive(false);
+            staticCard.SetActive(true);
+            generalCard.SetActive(true);
+            background.SetActive(false);
+        }
     }
 
     public void OnPopupClose()

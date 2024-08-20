@@ -200,6 +200,7 @@ MonoBehaviour:
   staticCard: {fileID: 4941508246541989734}
   generalCard: {fileID: 2266789377150069785}
   background: {fileID: 6578673582503809162}
+  config: {fileID: 11400000, guid: 49fee674f92e3e84f8d4b8fb376afe44, type: 2}
 --- !u!1 &4941508246541989734
 GameObject:
   m_ObjectHideFlags: 0
