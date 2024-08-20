@@ -1988,6 +1988,14 @@ PrefabInstance:
       propertyPath: endOfLevelZone
       value: 
       objectReference: {fileID: 1956424302}
+    - target: {fileID: 1050954291415711012, guid: 52526929b91e544498edab9ce447af0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 259.5165
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531215624750823810, guid: 52526929b91e544498edab9ce447af0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1658193525561460329, guid: 52526929b91e544498edab9ce447af0d, type: 3}
       propertyPath: textContent
       value: Use WASD to apply force and Up/Down arrow to change scale. Notice how

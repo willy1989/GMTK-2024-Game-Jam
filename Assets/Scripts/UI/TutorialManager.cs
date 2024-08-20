@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject popup;
     [SerializeField] private TMP_Text popupText;
     [SerializeField] private GameObject staticCard;
+    [SerializeField] private GameObject generalCard;
     [SerializeField] private GameObject background;
 
     public event UnityAction OnTutorialOpened;
@@ -21,6 +22,7 @@ public class TutorialManager : MonoBehaviour
         var staticText = staticCard.GetComponentInChildren<TMP_Text>();
         staticText.SetText(textContent);
         staticCard.SetActive(false);
+        generalCard.SetActive(false);
 
         popup.SetActive(true);
         popupText.SetText(textContent);
@@ -35,6 +37,7 @@ public class TutorialManager : MonoBehaviour
     {
         popup.SetActive(false);
         staticCard.SetActive(true);
+        generalCard.SetActive(true);
         background.SetActive(false);
         OnTutorialClosed?.Invoke();
     }
